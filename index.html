@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATELIER — Modern Fashion Collective</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --primary-light: #fafaf8;
+            --accent-gold: #c9a961;
+            --accent-sage: #8b9d83;
+            --accent-terracotta: #d4856f;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(250, 250, 248, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .nav-icons a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-icons a:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f3ed 0%, #e8e5da 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 5%;
+            max-width: 600px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 55%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000"><rect fill="%23d4856f" opacity="0.15" width="800" height="1000"/><path d="M400,100 L700,400 L400,900 L100,400 Z" fill="%238b9d83" opacity="0.1"/></svg>') center/cover;
+            animation: fadeIn 1.2s ease 0.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--primary-dark);
+            color: var(--primary-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: all 0.4s ease;
+            border: 1px solid var(--primary-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Featured Collections */
+        .collections {
+            padding: 8rem 5%;
+            background: var(--primary-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--primary-dark);
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .collection-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 3/4;
+            background: #e8e5da;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .collection-card:nth-child(1) { animation-delay: 0.1s; }
+        .collection-card:nth-child(2) { animation-delay: 0.2s; }
+        .collection-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .collection-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            background: linear-gradient(135deg, var(--accent-sage) 0%, var(--accent-terracotta) 100%);
+            opacity: 0.3;
+        }
+
+        .collection-card:hover .collection-image {
+            transform: scale(1.08);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem;
+            background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%);
+            color: white;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .collection-card:hover .collection-overlay {
+            transform: translateY(0);
+        }
+
+        .collection-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-count {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* Featured Products */
+        .products {
+            padding: 8rem 5%;
+            background: #f5f3ed;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .product-card {
+            text-decoration: none;
+            color: var(--primary-dark);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .product-image-wrapper {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            background: #e0ddd2;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0.4;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-gold);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .product-info {
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .product-category {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            font-weight: 300;
+        }
+
+        .product-price {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 6rem 5%;
+            background: var(--primary-dark);
+            color: var(--primary-light);
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: var(--primary-light);
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .newsletter-button {
+            padding: 1rem 2.5rem;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            border: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .newsletter-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 5rem 5% 2rem;
+            background: var(--primary-dark);
+            color: var(--primary-light);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .footer-column h4 {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            font-weight: 300;
+        }
+
+        .footer-column ul li a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-title {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                height: 70vh;
+            }
+            
+            .hero-image {
+                width: 100%;
+                opacity: 0.2;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">ATELIER</a>
+        <ul class="nav-links">
+            <li><a href="#new">New Arrivals</a></li>
+            <li><a href="#women">Women</a></li>
+            <li><a href="#men">Men</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="#search">🔍</a>
+            <a href="#account">👤</a>
+            <a href="#cart">🛍️</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Spring Summer 2026</div>
+            <h1 class="hero-title">Timeless Elegance Redefined</h1>
+            <p class="hero-description">Discover our curated collection of contemporary fashion pieces that blend minimalist aesthetics with sustainable craftsmanship.</p>
+            <a href="#shop" class="cta-button"><span>Explore Collection</span></a>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="collections" id="collections">
+        <div class="section-header">
+            <div class="section-subtitle">Curated For You</div>
+            <h2 class="section-title">Featured Collections</h2>
+        </div>
+        <div class="collections-grid">
+            <div class="collection-card">
+                <div class="collection-image"></div>
+                <div class="collection-overlay">
+                    <h3 class="collection-name">Essential Basics</h3>
+                    <p class="collection-count">24 Items</p>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="collection-image"></div>
+                <div class="collection-overlay">
+                    <h3 class="collection-name">Summer Breeze</h3>
+                    <p class="collection-count">18 Items</p>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="collection-image"></div>
+                <div class="collection-overlay">
+                    <h3 class="collection-name">Urban Edge</h3>
+                    <p class="collection-count">32 Items</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products">
+        <div class="section-header">
+            <div class="section-subtitle">New Arrivals</div>
+            <h2 class="section-title">Trending Now</h2>
+        </div>
+        <div class="products-grid">
+            <a href="#product1" class="product-card">
+                <div class="product-image-wrapper">
+                    <div class="product-image"></div>
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Linen Blend Shirt</h3>
+                    <p class="product-category">Women's Tops</p>
+                    <p class="product-price">$89.00</p>
+                </div>
+            </a>
+            <a href="#product2" class="product-card">
+                <div class="product-image-wrapper">
+                    <div class="product-image"></div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Tailored Trousers</h3>
+                    <p class="product-category">Women's Bottoms</p>
+                    <p class="product-price">$128.00</p>
+                </div>
+            </a>
+            <a href="#product3" class="product-card">
+                <div class="product-image-wrapper">
+                    <div class="product-image"></div>
+                    <span class="product-badge">Sale</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Cashmere Sweater</h3>
+                    <p class="product-category">Knitwear</p>
+                    <p class="product-price">$156.00</p>
+                </div>
+            </a>
+            <a href="#product4" class="product-card">
+                <div class="product-image-wrapper">
+                    <div class="product-image"></div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Silk Midi Dress</h3>
+                    <p class="product-category">Dresses</p>
+                    <p class="product-price">$198.00</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Join Our Community</h2>
+            <p>Subscribe to receive exclusive updates, early access to new collections, and special offers.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>ATELIER</h3>
+                <p>Contemporary fashion for the modern individual. Crafted with care, designed for life.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#new">New Arrivals</a></li>
+                    <li><a href="#women">Women</a></li>
+                    <li><a href="#men">Men</a></li>
+                    <li><a href="#sale">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#shipping">Shipping</a></li>
+                    <li><a href="#returns">Returns</a></li>
+                    <li><a href="#sizing">Size Guide</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#story">Our Story</a></li>
+                    <li><a href="#sustainability">Sustainability</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ATELIER. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#instagram">Instagram</a>
+                <a href="#facebook">Facebook</a>
+                <a href="#pinterest">Pinterest</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
